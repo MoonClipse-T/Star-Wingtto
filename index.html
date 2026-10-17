@@ -711,62 +711,6 @@ table.data.tanq td,table.data.tanq th{padding:10px 14px}
 .lg-bars.ok .r i{background:linear-gradient(90deg,#3fb24f,#9be27a)}
 .lumg .pg-res{top:56px}
 
-/* 3차시 마무리 「별 탐사선」 — 우주 · 별 이름표 · 사진 비교 · 별 카드 */
-.sim.xp{background:#02030a}
-.xp .pg-order .big u{text-decoration:none;color:#e8452f}
-.xp .pg-order .sub{margin-top:4px}.xp .pg-order .sub.bad{color:#d43a2a;font-weight:700}.xp .pg-order .sub.good{color:#23944a;font-weight:700}
-.xp .pg-top .dots{display:flex;gap:6px;align-items:center;padding:12px 16px}
-.xp .pg-top .dots i{width:14px;height:14px;border-radius:50%;background:#e6e0ee}.xp .pg-top .dots i.d{background:#3fb24f}.xp .pg-top .dots i.c{background:#ff5a6a;transform:scale(1.25)}
-.xp .pg-top .score{font-family:var(--head);font-weight:400;font-size:26px}
-.xp .xp-tag{text-align:center;background:rgba(255,253,245,.95);border-radius:16px;padding:6px 14px 7px;box-shadow:0 4px 0 rgba(0,0,0,.35);text-shadow:none;color:#2a2238;transition:opacity .25s}
-.xp .xp-tag .nm{display:block;font-family:var(--head);font-size:22px;white-space:nowrap}
-.xp .xp-tag .dt{display:block;font-size:15px;color:#5d5470;white-space:nowrap;line-height:1.35}.xp .xp-tag .dt b{color:#2a2238;font-size:17px}
-.xp .xp-tag i{position:absolute;left:50%;top:-30px;translate:-50% 0;font-style:normal;width:30px;height:30px;line-height:30px;border-radius:50%;background:#ffd23f;color:#5a2a00;font-family:var(--head);font-size:20px;box-shadow:0 3px 0 rgba(0,0,0,.3)}
-.xp .xp-tag.on{background:#ffd23f}
-.xp-plx{position:absolute;left:300px;top:205px;width:960px;display:none;pointer-events:auto}
-.xp-plx.on{display:block;animation:pg-in .45s cubic-bezier(.3,1.5,.5,1)}
-.sim .xp-plx canvas{display:block;width:960px!important;height:520px!important;border:6px solid #fffdf5;border-radius:22px;box-shadow:0 8px 0 rgba(0,0,0,.45);box-sizing:content-box;margin-left:-6px}
-.xp-plx .bt{display:flex;gap:10px;justify-content:center;margin-top:16px}
-.xp-plx .bt{align-items:center}
-.pg-ui .xp-plx .bt button{height:50px;line-height:1;white-space:nowrap;background:#fffdf5;border-radius:999px;padding:0 22px;font-size:20px;font-weight:700;color:#2a2238;box-shadow:0 5px 0 rgba(0,0,0,.35)}
-.pg-ui .xp-plx .bt button.on{background:#ffd23f}
-.xp-plx.measure .bt{display:none}
-.xp-ans{position:absolute;left:0;right:0;bottom:30px;display:none;justify-content:center;gap:14px;pointer-events:auto}
-.xp-ans.on{display:flex}
-.xp-ans button{min-width:170px;background:#fffdf5;border-radius:999px;padding:14px 26px;font-family:var(--head);font-size:30px;color:#2a2238;box-shadow:0 7px 0 rgba(0,0,0,.4)}
-.xp-ans button:active{transform:translateY(4px);box-shadow:0 3px 0 rgba(0,0,0,.4)}
-.xp-ans button.ok{background:#3fb24f;color:#fff}.xp-ans button.no{background:#ff8a8a;color:#fff;animation:pg-shake .4s}
-.pg-ui .xp-ok{position:absolute;left:50%;bottom:34px;translate:-50% 0;display:none;border-radius:999px;padding:14px 46px;font-family:var(--head);font-size:32px;color:#fff;background:linear-gradient(#5fd06f,#2fa344);box-shadow:0 7px 0 #1d6e2c}
-.pg-ui .xp-ok.on{display:block}
-.xp-card{position:absolute;right:40px;top:150px;width:450px;box-sizing:border-box;background:#fffdf5;border-radius:28px;padding:22px 26px;box-shadow:0 10px 0 rgba(0,0,0,.4);pointer-events:auto;display:none;color:#2a2238}
-.xp-card.on{display:block;animation:pg-in .5s cubic-bezier(.3,1.5,.5,1)}
-.xp-card .hd{display:flex;gap:16px;align-items:center}
-.xp-card .hd i{width:54px;height:54px;border-radius:50%;box-shadow:0 0 26px currentColor}
-.xp-card .hd b{display:block;font-family:var(--head);font-weight:400;font-size:40px;line-height:1.1}.xp-card .hd span{font-size:18px;color:#5d5470;font-weight:700}
-.xp-card ul{list-style:none;margin:14px 0 8px;padding:0}
-.xp-card li{display:flex;justify-content:space-between;font-size:18px;padding:6px 0;border-bottom:1px dashed #e3dcea;color:#5d5470}
-.xp-card li b{font-family:var(--head);font-weight:400;font-size:22px;color:#2a2238}
-.xp-card p{margin:10px 0 0;font-size:17px;line-height:1.5;color:#4b4360}
-.xp-card button{display:block;width:100%;margin-top:16px;border-radius:999px;padding:12px;font-family:var(--head);font-size:28px;color:#fff;background:linear-gradient(#ff7a6a,#ff4d5e);box-shadow:0 7px 0 #b3263a}
-.xp-clue{position:absolute;right:40px;top:150px;width:440px;box-sizing:border-box;background:#fffdf5;border-radius:24px;padding:16px 22px 18px;box-shadow:0 8px 0 rgba(0,0,0,.4);display:none;pointer-events:auto;color:#2a2238}
-.xp-clue.on{display:block}
-.xp-clue .hd{margin:0 0 6px;font-weight:700;color:#7a4fd0;font-size:18px}
-.xp-clue p{margin:8px 0 0;font-size:19px;line-height:1.45;color:#b8b0c6;display:flex;gap:10px}
-.xp-clue p.on{color:#2a2238;animation:pg-in .4s}
-.xp-clue p em{font-style:normal;flex:none;width:28px;height:28px;line-height:28px;text-align:center;border-radius:50%;background:#7a4fd0;color:#fff;font-size:16px}
-.xp-clue p span b{color:#e8452f}
-.xp-clue button{margin-top:12px;width:100%;border-radius:999px;padding:10px;font-family:var(--head);font-size:24px;color:#fff;background:linear-gradient(#a787ff,#7a4fd0);box-shadow:0 6px 0 #4b2c98}
-.xp-flash{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none}
-.xp-flash.on{animation:xp-fl .5s}
-@keyframes xp-fl{0%{opacity:0}35%{opacity:.85}100%{opacity:0}}
-.pg-count.xpc b{font-size:72px;-webkit-text-stroke:6px #2a2238}
-.pg-count.xpc small{color:#ffd23f}
-.xp-dex{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
-.xp-dex span{display:flex;align-items:center;gap:4px;font-size:12px;color:#b8b0c6;background:#f3eefc;border-radius:999px;padding:2px 8px 2px 4px}
-.xp-dex span i{width:12px;height:12px;border-radius:50%;background:#ddd5e6}
-.xp-dex span.on{color:#2a2238}.xp-dex span.on i{background:var(--c);box-shadow:0 0 0 1px rgba(0,0,0,.15)}
-.xp .pg-res .bd li span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-right:10px}
-
 /* 마무리 게임 「별빛 레이스」 (윙또식 반 전체 팀 레이스) — 우주 화면 + 밝고 둥근 게임 판 */
 .sim.race{background:#05061a;touch-action:none;user-select:none;-webkit-user-select:none}
 .race .rc-cv{position:absolute;inset:0;width:100%;height:100%;display:block}
