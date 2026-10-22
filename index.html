@@ -591,8 +591,7 @@ table.data.tanq td,table.data.tanq th{padding:10px 14px}
 .stelrec .ex-ghost{position:absolute;z-index:5;pointer-events:none;display:grid;place-items:center;padding:0 10px;background:#1a1712;border:1px solid var(--acc);color:var(--ink);font:400 18px var(--head);box-shadow:0 10px 30px rgba(0,0,0,.6);transform:scale(1.06)}
 .stelrec .ex-ghost em{display:none}
 /* 망원경 접안렌즈 연출 (sims/eyepiece.js) — body 에 붙는 전체 화면 막 */
-.eyep{position:fixed;inset:0;z-index:9999;pointer-events:none;--x:50%;--y:50%;--r:0px;--b:0px;--dx:0px;--dy:0px;--cap:0}
-.eyep .ep-blur{position:absolute;inset:0;backdrop-filter:blur(var(--b));-webkit-backdrop-filter:blur(var(--b));clip-path:circle(var(--r) at calc(var(--x) + var(--dx)) calc(var(--y) + var(--dy)))}
+.eyep{position:fixed;inset:0;z-index:9999;pointer-events:none;--x:50%;--y:50%;--r:0px;--dx:0px;--dy:0px;--cap:0}
 .eyep .ep-mask{position:absolute;inset:0;background:radial-gradient(circle at calc(var(--x) + var(--dx)) calc(var(--y) + var(--dy)),transparent 0,transparent calc(var(--r) * .82),rgba(0,0,0,.55) calc(var(--r) * .97),#000 var(--r))}
 /* 시야 가장자리(필드 스톱)의 얇은 색 번짐 */
 .eyep .ep-ring{position:absolute;inset:0;background:radial-gradient(circle at calc(var(--x) + var(--dx)) calc(var(--y) + var(--dy)),transparent calc(var(--r) - 3px),rgba(110,140,255,.28) calc(var(--r) - 1px),rgba(255,150,90,.18) var(--r),transparent calc(var(--r) + 2px))}
