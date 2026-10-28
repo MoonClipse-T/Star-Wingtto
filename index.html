@@ -1198,6 +1198,231 @@ table.data.tanq td,table.data.tanq th{padding:10px 14px}
 .race .rc-wq .q span{display:inline-flex;align-items:center;gap:6px;background:#efeaf8;border-radius:999px;padding:4px 12px;font-size:19px}
 .race .rc-wq .q u{text-decoration:none;color:#6a3fd6;font-weight:700}
 .race .rc-board[data-view=watch] .rc-side{pointer-events:auto}
+
+/* ===== 4차시 「우주선 탈출」 (sims/shipesc.js) — 게임 덱 · 4차시 강의자료 마지막 장이 함께 쓴다 ===== */
+/* 아이탈출식: 장면 한 장 + 아래 검은 가방 띠. 누른 곳으로 아이가 걸어가고, 글자 대신 그림 기호 말풍선 */
+.sim.se{background:#000;overflow:hidden;touch-action:manipulation;user-select:none;-webkit-user-select:none;color:#161320}
+.se button{font-family:inherit;cursor:pointer;touch-action:manipulation;border:0;padding:0;background:none;color:inherit}
+.se-scene{position:absolute;left:0;top:0;width:1600px;height:780px;overflow:hidden;background:#161b2d}
+.se-scene.shake{animation:se-shk .5s}
+@keyframes se-shk{20%{transform:translate(-10px,4px)}40%{transform:translate(9px,-5px)}60%{transform:translate(-6px,3px)}80%{transform:translate(4px,0)}}
+.se-room{position:absolute;inset:0;display:none}.se-room.on{display:block}
+.se-bg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.se-fg,.se-act,.se-close svg,.se-cover svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.se-act{pointer-events:none;z-index:2}
+.se [data-h]{cursor:pointer}
+.se-fg *{transform-box:fill-box}
+.se-wipe{position:absolute;inset:0;background:#000;opacity:0;pointer-events:none;z-index:8;transition:opacity .4s}.se-wipe.on{opacity:1}
+
+/* 아이: 위치는 JS 가 transform 으로, 걷기 · 몸짓은 안쪽 층 */
+.se #kid,.se .kflip,.se .kpose,.se .kbody{transform-box:view-box;transform-origin:0 0}
+.se .kflip{transition:transform .12s}
+.se #kid.gone{opacity:0;transition:opacity .3s}
+.se .kbody{animation:se-breath 2.6s ease-in-out infinite}
+@keyframes se-breath{50%{transform:scale(1.015,.985)}}
+.se .kid.walk .kbody{animation:se-walk .34s ease-in-out infinite}
+@keyframes se-walk{0%,100%{transform:none}25%{transform:translateY(-14px) rotate(-3deg)}75%{transform:translateY(-14px) rotate(3deg)}}
+.se .kid.wake .kbody{animation:se-wake .9s ease}
+@keyframes se-wake{0%{transform:rotate(-80deg) translateY(30px)}60%{transform:rotate(8deg)}100%{transform:none}}
+.se .kpose.no{animation:se-no .5s ease}@keyframes se-no{20%,60%{transform:rotate(-5deg)}40%,80%{transform:rotate(5deg)}}
+.se .kpose.reach{animation:se-reach .4s ease}@keyframes se-reach{50%{transform:translateY(-18px) scale(1.04,.96)}}
+.se .kpose.jump{animation:se-jump .5s cubic-bezier(.3,1.6,.5,1)}@keyframes se-jump{40%{transform:translateY(-60px) scale(.95,1.06)}}
+.se .kpose.tumble{animation:se-tumble .9s ease}
+@keyframes se-tumble{0%{transform:none}30%{transform:translateY(-90px) rotate(-40deg)}65%{transform:translateY(-20px) rotate(-320deg)}100%{transform:rotate(-360deg)}}
+.se .kid .ks{display:none}.se .kid .ks0{display:inline}
+.se .kid.surprise .ks0,.se .kid.happy .ks0,.se .kid.goo .ks0,.se .kid.sad .ks0{display:none}
+.se .kid.surprise .ks1,.se .kid.sad .ks1,.se .kid.happy .ks2,.se .kid.goo .ks3{display:inline}
+
+/* 주울 물건 */
+.se .item{transform-origin:50% 100%}
+.se .item.hide{display:none}
+.se .item.pop{animation:se-popout .8s cubic-bezier(.3,0,.5,1)}
+@keyframes se-popout{0%{transform:translate(var(--fx),var(--fy)) scale(.4)}50%{transform:translate(calc(var(--fx) * .45),calc(var(--fy) * .45 - 150px)) scale(1.15)}80%{transform:translateY(-14px)}100%{transform:none}}
+.se .item.got{animation:se-got .32s ease forwards}@keyframes se-got{to{transform:translateY(-130px) scale(.5);opacity:0}}
+.se .glint{transform-origin:50% 50%;animation:se-glint 1.8s ease-in-out infinite}
+@keyframes se-glint{0%,60%,100%{opacity:0;transform:scale(.3)}75%{opacity:1;transform:scale(1.1) rotate(45deg)}}
+
+/* 문 */
+.se .dopen{opacity:0;transition:opacity .6s}.se.f-door .se-room.on .dopen{opacity:1}
+.se.f-door .se-room.on .dlamp{fill:#38e07a}
+.se .shoot{opacity:0}.se .shoot.go{animation:se-shoot 1s ease-out}
+@keyframes se-shoot{0%{opacity:1;transform:translate(0,0)}100%{opacity:0;transform:translate(-320px,170px)}}
+
+/* ① 조종실 · 졸린 외계인 선장 */
+.se .alien .abody{transform-origin:50% 100%;animation:se-snore 3s ease-in-out infinite}
+@keyframes se-snore{50%{transform:scale(1.04,.97)}}
+.se .alien .zzz text{animation:se-z 3s ease-in-out infinite;transform-origin:50% 50%}
+.se .alien .zzz text:nth-child(2){animation-delay:.6s}.se .alien .zzz text:nth-child(3){animation-delay:1.2s}
+@keyframes se-z{0%{opacity:0;transform:translate(0,10px)}30%{opacity:1}100%{opacity:0;transform:translate(14px,-26px)}}
+@keyframes se-peek{0%,100%{opacity:0}15%,70%{opacity:1}}
+@keyframes se-peekc{0%,100%{opacity:1}15%,70%{opacity:0}}
+.se .alien .as1,.se .alien .as2{opacity:0}
+.se .alien.peek .as1{animation:se-peek 1.6s ease forwards}.se .alien.peek .as0{animation:se-peekc 1.6s ease forwards}
+.se .alien.achoo .as2{animation:se-peek 1.5s ease forwards}.se .alien.achoo .as0{animation:se-peekc 1.5s ease forwards}
+.se .alien.achoo .abody{animation:se-achoo .9s ease}
+@keyframes se-achoo{0%{transform:none}35%{transform:translateY(-10px) scale(.95,1.08) rotate(4deg)}50%{transform:scale(1.1,.9) rotate(-8deg)}100%{transform:none}}
+.se .alien.inhale .abody{animation:se-inhale 1s ease-in forwards}.se .alien.inhale .as1{opacity:1}.se .alien.inhale .as0{opacity:0}
+@keyframes se-inhale{30%{transform:scale(1.03,1.05)}60%{transform:scale(1.06,1.1) rotate(-3deg)}100%{transform:scale(1.1,1.16) rotate(-6deg)}}
+.se .alien.achoo .zzz,.se .alien.inhale .zzz{opacity:0}
+.se .alien .splat{opacity:0}
+.se .alien.achoo .splat{animation:se-splat .8s cubic-bezier(.3,0,.6,1) .45s}
+@keyframes se-splat{0%{opacity:1;transform:none}100%{opacity:.9;transform:translate(-250px,60px) scale(1.5)}}
+.se.f-zapped .beltcard{display:none}
+.se.alarm .sirlamp{animation:se-siren .25s steps(2) infinite}
+@keyframes se-siren{50%{fill:#ff2e2e}}
+.se.alarm .se-scene::after{content:"";position:absolute;inset:0;background:#ff2020;mix-blend-mode:multiply;animation:se-red .35s steps(2) infinite;pointer-events:none;z-index:3}
+@keyframes se-red{50%{opacity:.35}0%{opacity:0}}
+.se .navq text{animation:se-blinkt 1s steps(2) infinite}@keyframes se-blinkt{50%{opacity:.25}}
+.se .navq.blink{animation:se-push .3s}
+.se .crit{opacity:0}.se .critter.peep .crit{animation:se-peep 1.4s ease}
+@keyframes se-peep{0%{opacity:0;transform:translateY(30px)}20%,75%{opacity:1;transform:translateY(-34px)}100%{opacity:0;transform:translateY(30px)}}
+/* 조종실 6판: 꼬마의 드라이버 · 퓨즈 상자 · 의자 전기구이 */
+.se .critter.nodrv .cdrv{display:none}
+.se .fpanel{opacity:0;transition:opacity .4s}.se.f-fuse .fpanel{opacity:1}.se.f-circuit .fhole{fill:#2a2208;stroke-width:6}
+.se .screws.wig .screw{animation:se-no .4s}.se .screw{transform-origin:50% 50%}
+.se .screws.out .screw{animation:se-screw .5s ease-in forwards}.se .screws.out .screw:nth-child(2){animation-delay:.14s}.se .screws.out .screw:nth-child(3){animation-delay:.28s}.se .screws.out .screw:nth-child(4){animation-delay:.42s}
+@keyframes se-screw{60%{transform:translateY(-40px) rotate(540deg)}100%{transform:translateY(60px) rotate(720deg);opacity:0}}
+.se.f-fuse .screws{display:none}
+.se .zflow{opacity:0}.se.f-circuit .zflow{opacity:1;animation:se-flow 1s linear infinite}
+.se.zapping .zflow{stroke:#fff;stroke-width:10;animation-duration:.15s}
+@keyframes se-flow{to{stroke-dashoffset:-44}}
+.se .alien .bolts{opacity:0}.se .alien.zap .bolts{animation:se-blinkt .1s steps(2) infinite;opacity:1}
+.se .alien.zap .abody{animation:se-xray .12s steps(2) infinite}@keyframes se-xray{50%{filter:invert(1) brightness(1.6)}}
+.se .alien .ajump{transform-origin:50% 100%}.se .alien.zap .ajump{animation:se-zjump 1.1s ease}
+@keyframes se-zjump{20%{transform:translateY(-70px) scale(1.05,1.1)}50%{transform:translateY(-40px) rotate(-6deg)}75%{transform:translateY(-60px) rotate(5deg)}100%{transform:none}}
+.se .alien.zap .as2{opacity:1;animation:none}.se .alien.zap .as0{opacity:0;animation:none}
+.se.f-zapped .alien .abody image{filter:brightness(.5) sepia(.6)}
+.se .alien .smoke{opacity:0}.se.f-zapped .alien .smoke circle{animation:se-smoke 2.4s ease-out infinite}
+.se.f-zapped .alien .smoke circle:nth-child(2){animation-delay:.8s}.se.f-zapped .alien .smoke circle:nth-child(3){animation-delay:1.6s}
+.se.f-zapped .alien .smoke{opacity:1}
+@keyframes se-smoke{0%{opacity:.8;transform:translateY(0) scale(.5)}100%{opacity:0;transform:translateY(-70px) scale(1.4)}}
+.se-close .drag{cursor:grab}.se-close .drag.lift{opacity:.85;cursor:grabbing}
+.se-close svg.fizz{animation:se-shk .5s}
+
+/* ② 성운 관측실 */
+.se .scr{opacity:0;transition:opacity .4s}.se.f-power .scr{opacity:1}
+.se .noise{opacity:0}.se.f-power .noise{animation:se-flick .7s steps(4) forwards}
+@keyframes se-flick{0%{opacity:1}100%{opacity:0}}
+.se .nebimg{transition:opacity 1.2s}.se.f-neb .nebimg{opacity:1}
+/* 관측실 6판: 전선 · 콘센트 · 망원경 사진 → 모니터 */
+.se .cordhand,.se .cordin{display:none}.se.f-carry .cordhand{display:inline}.se.f-carry .cordfloor,.se.f-power .cordfloor{display:none}.se.f-power .cordin{display:inline}
+.se.f-power .rlamp{fill:#38e07a}
+.se .mon .nebimg,.se .mon .mframe{opacity:0;transition:opacity .8s}.se .mon.done .nebimg,.se .mon.done .mframe{opacity:1}
+.se .mon.bad .scr{animation:se-bad .45s steps(2)}@keyframes se-bad{50%{opacity:.2}}
+.se .mon.blip .scr{animation:se-bad .2s steps(2)}
+.se .gogl{transform-origin:50% 50%}.se.f-match .gogl{animation:se-gogl .8s ease-in-out infinite}.se.f-door .gogl{animation:none;opacity:.8}
+@keyframes se-gogl{50%{opacity:.85;transform:scale(1.2)}}
+@keyframes se-push{50%{transform:scale(.86)}}
+.se-close .flash.go{animation:se-flash .35s ease-out}@keyframes se-flash{0%{opacity:.9}100%{opacity:0}}
+.se-close .scview.pan{animation:se-pan .4s ease-out}@keyframes se-pan{from{opacity:.2;transform:translateX(-60px)}}
+.se-close .scl-l,.se-close .scr-r,.se-close .sc-shot{cursor:pointer}
+.se-close .sunhint{animation:se-flow .6s linear infinite}
+.se .jelly{transform-origin:50% 100%}.se .jelly.boing{animation:se-boing .7s cubic-bezier(.3,1.8,.5,1)}
+@keyframes se-boing{30%{transform:scale(1.25,.7)}60%{transform:translateY(-30px) scale(.85,1.2)}}
+
+/* ③ 휴게실 */
+.se .fopen{opacity:0}.se.f-fridge .fopen{opacity:1}
+.se .puff{opacity:0;transform-origin:50% 50%}.se .cushion.poof .puff{animation:se-puff .6s ease-out}
+@keyframes se-puff{0%{opacity:.9;transform:scale(.4)}100%{opacity:0;transform:scale(1.6) translateY(-20px)}}
+.se .cat{transform-origin:50% 100%}
+.se .cat .cs{display:none}.se .cat .cs0{display:inline}
+.se .cat.hiss .catb{animation:se-hiss .5s ease}.se .cat.hiss .cs0{display:none}.se .cat.hiss .cs1{display:inline}
+@keyframes se-hiss{40%{transform:translateY(-30px) scale(1.06)}}
+.se .cat.jump{animation:se-catjump .7s cubic-bezier(.4,0,.6,1) forwards}.se .cat.jump .cs0{display:none}.se .cat.jump .cs1{display:inline}
+@keyframes se-catjump{50%{transform:translate(170px,-190px)}100%{transform:translate(335px,0)}}
+.se .cat.eat{transform:translate(335px,0)}.se .cat.eat .cs0{display:none}.se .cat.eat .cs2{display:inline}
+.se .cat.eat .catb{animation:se-munch .4s ease-in-out infinite}@keyframes se-munch{50%{transform:scale(1.03,.97)}}
+.se .gacha.wob .gballs,.se .gacha.spin .gballs{animation:se-balls .25s ease-in-out infinite}
+@keyframes se-balls{25%{transform:translate(-6px,-10px)}75%{transform:translate(6px,-4px)}}
+.se .gacha.wob .gballs{animation-iteration-count:2}
+.se .gknob{transform-origin:50% 50%}.se .gacha.spin .gknob{animation:se-turn .9s ease}@keyframes se-turn{to{transform:rotate(720deg)}}
+.se .hbeam{animation:se-holo 2.2s ease-in-out infinite}@keyframes se-holo{50%{opacity:.2}}
+.se .hgal{opacity:.25;transform-origin:50% 50%}.se .holo.lit .hgal,.se.f-sun .hgal{opacity:1;animation:se-hspin 6s linear infinite}
+@keyframes se-hspin{50%{transform:scaleX(.8)}}
+
+/* ④ 포드 격납고 */
+.se .screen{opacity:0;transition:opacity .5s}.se.f-chip .screen{opacity:1}
+.se .slotchip{opacity:0}.se.f-chip .slotchip{opacity:1}
+.se .hatch{transform-origin:50% 50%;transform:scale(0);transition:transform 1s cubic-bezier(.3,1.3,.5,1) .2s}.se.f-lever .hatch{transform:none}
+.se .beacon{opacity:0}.se.f-lever .beacon{animation:se-beacon .5s steps(2) infinite}@keyframes se-beacon{50%{opacity:1}}
+.se .spark{opacity:0}.se .lever.zap .spark{animation:se-sparkf .5s steps(3)}@keyframes se-sparkf{0%,100%{opacity:0}30%,70%{opacity:1}}
+.se .bot{animation:se-bot 10s ease-in-out infinite alternate}
+@keyframes se-bot{0%{transform:translate(600px,742px)}48%{transform:translate(1060px,734px)}52%{transform:translate(1080px,734px)}100%{transform:translate(1200px,726px)}}
+.se .bot .botb{transform-origin:50% 100%}.se .bot.spin .botb{animation:se-botspin .6s ease}@keyframes se-botspin{to{transform:rotate(360deg)}}
+.se .boteye{animation:se-blinkt .8s steps(2) infinite}
+.se .poddoor{opacity:0;transition:opacity .5s}.se.f-lever .poddoor{opacity:1}
+.se .podkid{opacity:0}.se.f-board .podkid{opacity:1}
+.se .podpit,.se .flame{opacity:0}.se.f-fly .podpit,.se.f-fly .flame{opacity:1}
+.se .flame{transform-origin:50% 0;animation:se-flame .1s infinite alternate}@keyframes se-flame{to{transform:scaleY(1.3)}}
+.se .podfly{transform-box:view-box;transform-origin:922px 415px}.se .podfly.knock{animation:se-knock .3s}
+@keyframes se-knock{30%{transform:rotate(2deg)}70%{transform:rotate(-2deg)}}
+.se.f-fly .podfly{animation:se-podup 2.4s cubic-bezier(.6,0,.4,1) forwards}
+@keyframes se-podup{0%{transform:none}12%{transform:translate(4px,6px)}24%{transform:translate(-4px,0)}100%{transform:translate(0,-540px) scale(.45);opacity:.3}}
+.se .bdopen{opacity:0;transition:opacity .2s}.se.f-angry .bdopen{opacity:1}
+.se .angry{opacity:0;transform:translateY(16px);transition:opacity .2s,transform .4s cubic-bezier(.3,1.5,.5,1)}
+.se.f-angry .angry{opacity:1;transform:none;animation:se-fist .3s ease-in-out .4s 8}@keyframes se-fist{50%{transform:translateY(-8px)}}
+.se .burst{opacity:0;transform-origin:50% 50%}.se .bdoor.bang .burst{animation:se-burst .6s ease}
+@keyframes se-burst{0%{opacity:0;transform:scale(.3)}30%{opacity:1;transform:scale(1.1)}100%{opacity:0;transform:scale(1.3)}}
+
+/* 힌트 고리 */
+/* 격납고 6판: 열쇠 상자 · 로봇 부수기 */
+.se .kin{opacity:0}.se.f-key .kin{opacity:1}.se.f-key .klamp{fill:#38e07a}
+.se .bot.hold,.se.f-bot .bot{animation-play-state:paused}
+.se .bot.bonk .botb{animation:se-bonk .4s ease}@keyframes se-bonk{40%{transform:scale(1.3,.5)}}
+.se.f-bot .botb{opacity:0}
+.se .bp{opacity:0}.se.f-bot .bp{opacity:1;animation:se-bp .7s cubic-bezier(.2,.8,.4,1) forwards}
+.se.f-bot .bp0{--bx:-60px;--by:-40px}.se.f-bot .bp1{--bx:50px;--by:-50px}.se.f-bot .bp2{--bx:10px;--by:-70px}.se.f-bot .bp3{--bx:-30px;--by:10px}
+@keyframes se-bp{0%{transform:none}60%{transform:translate(var(--bx),var(--by)) rotate(200deg)}100%{transform:translate(var(--bx),calc(var(--by) * -.1 + 6px)) rotate(260deg)}}
+.se.f-bot .bp4{animation:se-smoke 1.4s ease-out forwards}
+/* 힌트 버튼: 남은 수 */
+.se-q{position:relative}.se-q::after{content:attr(data-n);position:absolute;right:-10px;top:-10px;width:34px;height:34px;border-radius:50%;background:#ff4b3e;color:#fff;border:4px solid #161320;font-size:22px;line-height:28px;text-align:center}
+.se-q.used{opacity:.35;filter:grayscale(1);cursor:default}
+.se-ring{position:absolute;width:170px;height:170px;margin:-85px 0 0 -85px;border:9px solid #ffe66d;border-radius:50%;box-shadow:0 0 34px #ffe66d,inset 0 0 24px #ffe66d;pointer-events:none;z-index:6;display:none}
+.se-ring.on{display:block;animation:se-ring .9s ease-in-out 4}@keyframes se-ring{0%,100%{transform:scale(.8);opacity:1}50%{transform:scale(1.2);opacity:.5}}
+
+/* 가까이 보기 + 닫기(✕) 버튼 */
+.se-close{position:absolute;inset:0;display:none;z-index:5}.se-close.on{display:block;animation:se-zoomin .25s ease}
+@keyframes se-zoomin{from{transform:scale(.92);opacity:0}}
+.se-close .dial,.se-close .mslot,.se-close .mpt,.se-close .lampb,.se-close .scopenext,.se-close image{cursor:pointer}
+.se-close .dial.spin{transform-box:fill-box;transform-origin:50% 50%;animation:se-spin .35s ease}@keyframes se-spin{from{transform:rotate(-90deg)}}
+.se-close .shake{transform-box:fill-box;animation:se-shake .35s}@keyframes se-shake{25%{transform:translateX(-10px)}75%{transform:translateX(10px)}}
+.se-close .mpt.sun circle:first-child{fill:rgba(255,210,63,.4);stroke:#ffd23f}
+.se-close .hoff{opacity:.35}
+.se-x{position:absolute;right:26px;top:22px;width:108px;height:108px;border-radius:50%!important;background:#ff5a4a!important;border:7px solid #161320!important;box-shadow:0 8px 0 rgba(0,0,0,.55);z-index:6;animation:se-xin .3s cubic-bezier(.3,1.6,.5,1)}
+.se-x::before,.se-x::after{content:"";position:absolute;left:50%;top:50%;width:58px;height:14px;margin:-7px 0 0 -29px;background:#fff;border-radius:7px;transform:rotate(45deg);box-shadow:0 0 0 4px #161320}
+.se-x::after{transform:rotate(-45deg)}
+.se-x:active{transform:translateY(5px);box-shadow:0 3px 0 rgba(0,0,0,.55)}
+@keyframes se-xin{from{transform:scale(.3) rotate(-90deg)}}
+
+/* 말풍선: 그림 기호만 (아이 머리 위) */
+.se-bub{position:absolute;z-index:7;transform:translate(-30%,-100%) scale(.5);opacity:0;pointer-events:none;
+  background:#fffef6;border:5px solid #161320;border-radius:30px;padding:8px 20px 10px;font-size:52px;line-height:1.1;color:#161320;white-space:nowrap;transition:transform .18s cubic-bezier(.3,1.6,.5,1),opacity .15s}
+.se-bub img{height:70px;vertical-align:middle}
+.se-bub::after{content:"";position:absolute;left:24%;bottom:-24px;width:30px;height:28px;background:#fffef6;border-right:5px solid #161320;border-bottom:5px solid #161320;transform:skewX(30deg) rotate(10deg);border-bottom-right-radius:10px}
+.se-bub.flip{transform:translate(-75%,-100%) scale(.5)}.se-bub.flip::after{left:auto;right:22%;transform:skewX(-30deg) rotate(-10deg)}
+.se-bub.on{opacity:1;transform:translate(-30%,-100%) scale(1);pointer-events:auto}.se-bub.flip.on{transform:translate(-75%,-100%) scale(1)}
+
+/* 아래 가방 띠 */
+.se-bar{position:absolute;left:0;right:0;bottom:0;height:120px;background:#0d0b14;border-top:5px solid #2b2638;display:flex;align-items:center;gap:22px;padding:0 26px}
+.se-slots{display:flex;gap:12px;flex:1}
+.se-slot{width:96px;height:96px;border-radius:14px!important;background:#1d1a2b!important;box-shadow:inset 0 6px 0 rgba(0,0,0,.6),0 0 0 3px #2f2a40;display:flex;align-items:center;justify-content:center}
+.se-slot img{max-width:80px;max-height:80px;object-fit:contain}
+.se-slot.photo img{width:80px;height:64px;object-fit:cover;border:4px solid #fffef6;outline:3px solid #161320;transform:rotate(-4deg)}
+.se-slot.sel{box-shadow:inset 0 6px 0 rgba(0,0,0,.6),0 0 0 4px #ffd23f,0 0 26px #ffd23f}
+.se-slot.pop{animation:se-pop .6s cubic-bezier(.3,1.6,.5,1)}@keyframes se-pop{from{transform:scale(.2) rotate(-20deg)}}
+.se-rooms{display:flex;gap:10px}.se-rooms i{width:26px;height:26px;border-radius:50%;background:#2b2638;border:4px solid #161320;box-shadow:0 0 0 2px #3a3450}
+.se-rooms i.done{background:#38e07a}
+.se[data-room="0"] .se-rooms i[data-r="0"],.se[data-room="1"] .se-rooms i[data-r="1"],.se[data-room="2"] .se-rooms i[data-r="2"],.se[data-room="3"] .se-rooms i[data-r="3"]{background:#ffd23f;animation:se-glow2 1.2s ease-in-out infinite}
+@keyframes se-glow2{50%{box-shadow:0 0 0 2px #3a3450,0 0 16px #ffd23f}}
+.se-q{width:84px;height:84px;border-radius:50%!important;background:#ffd23f!important;border:5px solid #161320!important;font-family:"GameT",sans-serif;font-size:50px;line-height:1;box-shadow:0 5px 0 #8a6a00}
+.se-q:active{transform:translateY(4px);box-shadow:none}
+.se-clock{font-family:"GameT",sans-serif;font-size:36px;color:#6dff9a;background:#05180c;border:4px solid #23402c;border-radius:10px;padding:6px 16px;letter-spacing:.06em}
+
+/* 시작 · 끝 */
+.se-cover{position:absolute;inset:0;display:none;z-index:9;background:#0b0d1f}.se-cover.on{display:block}
+.se-go,.se-again{cursor:pointer}.se-go{animation:se-beat 1.2s ease-in-out infinite;transform-box:fill-box;transform-origin:50% 50%}
+@keyframes se-beat{50%{transform:scale(1.06) rotate(-1deg)}}
+.se .tflame{transform-box:fill-box;transform-origin:100% 50%;animation:se-flame .12s infinite alternate}
 </style></head>
 <body><div id="viewport"><div id="stage">
 <section class="slide" data-title="스타-윙또" data-nochrome>
