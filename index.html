@@ -1423,6 +1423,25 @@ table.data.tanq td,table.data.tanq th{padding:10px 14px}
 .se-go,.se-again{cursor:pointer}.se-go{animation:se-beat 1.2s ease-in-out infinite;transform-box:fill-box;transform-origin:50% 50%}
 @keyframes se-beat{50%{transform:scale(1.06) rotate(-1deg)}}
 .se .tflame{transform-box:fill-box;transform-origin:100% 50%;animation:se-flame .12s infinite alternate}
+
+/* 격납고: 부서진 로봇은 누를 수 없게 (로봇 자리에 떨어진 열쇠가 로봇에 가려 안 주워지던 문제) */
+.se.f-bot .bot{pointer-events:none}
+/* 레버: 차단기(열쇠)로 전기를 끊기 전에는 늘 지지직 · 끊으면 잠잠 · 좌표 전에는 꿈쩍 않음 */
+.se:not(.f-key) .lever .spark{animation:se-sparkf 1.1s steps(3) infinite}
+.se .lever.stuck{animation:se-no .4s ease}
+/* 감전: 화면 번쩍 + 엑스레이 해골 깜빡임 → 그을음 · 연기 */
+.se .kxray,.se .ksmoke{display:none}
+.se .kid.xr .kxray{display:inline;animation:se-xr .16s steps(1) infinite}
+.se .kid.xr .kbody{animation:se-xr .16s steps(1) infinite reverse}
+@keyframes se-xr{0%{opacity:1}50%{opacity:0}}
+.se .kxray .xbody{fill:#3fb6ff;opacity:.55;stroke:#bfe9ff;stroke-width:4}
+.se .kxray .xbolt{animation:se-sparkf .2s steps(2) infinite}
+.se.shock .se-scene::after{content:"";position:absolute;inset:0;background:#fff;pointer-events:none;animation:se-flash .26s steps(1) infinite}
+@keyframes se-flash{0%{opacity:.55}50%{opacity:0}}
+.se .kid.soot .kbody{filter:brightness(.35) sepia(.4)}
+.se .kid.soot .ksmoke{display:inline}.se .kid.soot .ksmoke circle{animation:se-smk 1.8s ease-out forwards}
+@keyframes se-smk{to{transform:translateY(-70px) scale(1.8);opacity:0}}
+.se .ksmoke circle{transform-box:fill-box;transform-origin:center}
 </style></head>
 <body><div id="viewport"><div id="stage">
 <section class="slide" data-title="스타-윙또" data-nochrome>
