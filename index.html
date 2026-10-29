@@ -1305,8 +1305,8 @@ table.data.tanq td,table.data.tanq th{padding:10px 14px}
 @keyframes se-flick{0%{opacity:1}100%{opacity:0}}
 .se .nebimg{transition:opacity 1.2s}.se.f-neb .nebimg{opacity:1}
 /* 관측실 6판: 전선 · 콘센트 · 망원경 사진 → 모니터 */
-.se .cordhand,.se .cordin{display:none}.se.f-carry .cordhand{display:inline}.se.f-carry .cordfloor,.se.f-power .cordfloor{display:none}.se.f-power .cordin{display:inline}
-.se.f-power .rlamp{fill:#38e07a}
+/* 관측실: 연장선을 꽂으면 (같은 배경에서 오린) 꽂힌 그림이 나타난다 */
+.se .cordon{opacity:0;pointer-events:none;transition:opacity .35s}.se.f-power .cordon{opacity:1}
 .se .mon .nebimg,.se .mon .mframe{opacity:0;transition:opacity .8s}.se .mon.done .nebimg,.se .mon.done .mframe{opacity:1}
 .se .mon.bad .scr{animation:se-bad .45s steps(2)}@keyframes se-bad{50%{opacity:.2}}
 .se .mon.blip .scr{animation:se-bad .2s steps(2)}
@@ -1317,7 +1317,6 @@ table.data.tanq td,table.data.tanq th{padding:10px 14px}
 .se-close .scview.pan{animation:se-pan .4s ease-out}@keyframes se-pan{from{opacity:.2;transform:translateX(-60px)}}
 .se-close .scl-l,.se-close .scr-r,.se-close .sc-shot{cursor:pointer}
 .se-close .sunhint{animation:se-flow .6s linear infinite}
-.se .jelly{transform-origin:50% 100%}.se .jelly.boing{animation:se-boing .7s cubic-bezier(.3,1.8,.5,1)}
 @keyframes se-boing{30%{transform:scale(1.25,.7)}60%{transform:translateY(-30px) scale(.85,1.2)}}
 
 /* ③ 휴게실 */
